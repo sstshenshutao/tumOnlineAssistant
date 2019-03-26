@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <aop:aspectj-autoproxy/>
+    <bean id="TumOnline" class="com.cybertaotao.robot.campus.program.TumOnline"></bean>
+    <bean class="com.cybertaotao.robot.campus.program.LogAspect">
+        <constructor-arg ref="AllMessageLogger"></constructor-arg>
+    </bean>
+    <bean id="TumOnlineLoginProcess" class="com.cybertaotao.robot.campus.program.TumOnlineLoginProcess">
+        <constructor-arg ref="TumOnline"></constructor-arg>
+    </bean>
+    <bean class="com.cybertaotao.robot.campus.program.TumOnlineLoginProcessAspect">
+        <constructor-arg ref="AllMessageLogger"></constructor-arg>
+    </bean>
+    <bean id="TumOnlineLoginMain" class="com.cybertaotao.robot.campus.program.TumOnlineLoginMain">
+        <constructor-arg ref="TumOnlineLoginProcess"></constructor-arg>
+    </bean>
+    <bean class="com.cybertaotao.robot.campus.program.TumOnlineLoginMainAspect">
+        <constructor-arg ref="AllMessageLogger"></constructor-arg>
+    </bean>
+
+    <bean id="AllMessageLogger" class="com.cybertaotao.robot.campus.util.MegaLogger">
+        <constructor-arg value="log.log"></constructor-arg>
+    </bean>
+    <bean id="TumOnlineVisitCard" class="com.cybertaotao.robot.campus.program.TumOnlineVisitCard">
+        <constructor-arg ref="TumOnline"></constructor-arg>
+    </bean>
+    <bean class="com.cybertaotao.robot.campus.program.TumOnlineVisitCardAspect">
+        <constructor-arg ref="AllMessageLogger"></constructor-arg>
+    </bean>
+    <bean id="TumOnlineVisitCardMain" class="com.cybertaotao.robot.campus.program.TumOnlineVisitCardMain">
+        <constructor-arg ref="TumOnlineVisitCard"></constructor-arg>
+    </bean>
+    <bean class="com.cybertaotao.robot.campus.program.TumOnlineVisitCardMainAspect">
+        <constructor-arg ref="AllMessageLogger"></constructor-arg>
+    </bean>
+    <bean id="TumOnlineChooseProcess" class="com.cybertaotao.robot.campus.program.TumOnlineChooseProcess">
+        <constructor-arg ref="TumOnline"></constructor-arg>
+    </bean>
+    <bean class="com.cybertaotao.robot.campus.program.TumOnlineChooseProcessAspect">
+        <constructor-arg ref="AllMessageLogger"></constructor-arg>
+    </bean>
+</beans>
